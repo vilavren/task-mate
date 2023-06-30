@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       {TaskStore.tasks.map((t) => (
-        <div key={t.id}>{t.title}</div>
+        <>{t.title}</>
       ))}
     </div>
   )

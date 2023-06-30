@@ -1,16 +1,16 @@
 import { makeAutoObservable } from 'mobx'
 
-import { ITask } from './types'
+import { ITask } from '../interfaces/task'
 
 class Task {
   tasks: ITask[] = [
     {
-      id: 1,
+      id: '1',
       title: 'Первая',
       completed: false,
     },
     {
-      id: 2,
+      id: '2',
       title: 'Вторая',
       completed: false,
     },
@@ -24,11 +24,11 @@ class Task {
     this.tasks.push(task)
   }
 
-  removeTask(id: number) {
+  removeTask(id: string) {
     this.tasks = this.tasks.filter((t) => t.id !== id)
   }
 
-  completedTask(id: number) {
+  completedTask(id: string) {
     this.tasks = this.tasks.map((t) =>
       t.id === id ? { ...t, completed: !t.completed } : t
     )

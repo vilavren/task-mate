@@ -1,20 +1,10 @@
 import { makeAutoObservable } from 'mobx'
 
+import { tasksData } from '../data/tasksData'
 import { ITask } from '../interfaces/task'
 
 class Task {
-  tasks: ITask[] = [
-    {
-      id: '1',
-      title: 'Первая',
-      completed: true,
-    },
-    {
-      id: '2',
-      title: 'Вторая',
-      completed: false,
-    },
-  ]
+  tasks: ITask[] = tasksData
 
   constructor() {
     makeAutoObservable(this)

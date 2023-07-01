@@ -14,6 +14,9 @@ export const Task: React.FC<TaskProps> = ({ task }) => {
       <Checkbox checked={task.completed} onChange={onChange}>
         {task.title}
       </Checkbox>
+
+      {task.subtasks &&
+        task.subtasks.map((st) => <Task key={st.id} task={st} />)}
     </li>
   )
 }

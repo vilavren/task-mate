@@ -2,12 +2,12 @@ import React from 'react'
 
 import './App.css'
 
-import { WrapperTasks } from './components/WrapperTasks/WrapperTasks'
+import { Layout } from './components/Layout/Layout'
 
 function App() {
   return (
     <div className="App">
-      <WrapperTasks />
+      <Layout />
     </div>
   )
 }

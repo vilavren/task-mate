@@ -1,3 +1,4 @@
+import { RightOutlined } from '@ant-design/icons/lib/icons'
 import { Checkbox } from 'antd'
 import type { CheckboxChangeEvent } from 'antd/es/checkbox'
 import cn from 'classnames'
@@ -21,6 +22,8 @@ export const Task: React.FC<TaskProps> = ({
 
   return (
     <li className={cn(className, styles.task)} {...props}>
+      <RightOutlined className={styles.caret} />
+
       <Checkbox
         className={styles.checkbox}
         checked={task.completed}

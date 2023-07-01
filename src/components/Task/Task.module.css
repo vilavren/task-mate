@@ -1,8 +1,13 @@
 .task {
 	background-color: #F7FBFD;
+	border-radius: 10px;
 }
 
 
 .checkbox {
+	margin-right: 10px;
+}
+
+.caret {
 	margin-right: 10px;
 }

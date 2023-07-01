@@ -5,6 +5,7 @@ import cn from 'classnames'
 import React from 'react'
 
 import { Htag } from '../UI/Htag/Htag'
+import { Input } from '../UI/Input/Input'
 
 import styles from './Task.module.css'
 import { TaskProps } from './Task.props'
@@ -33,10 +34,17 @@ export const Task: React.FC<TaskProps> = ({
       <Htag tag={htag}>{task.title}</Htag>
 
       {task.subtasks && (
-        <ul>
+        <ul className={styles.subTasks}>
           {task.subtasks.map((st) => (
-            <Task htag={subHtag} subHtag={subHtag} key={st.id} task={st} />
+            <Task
+              className={styles.subTask}
+              htag={subHtag}
+              subHtag={subHtag}
+              key={st.id}
+              task={st}
+            />
           ))}
+          <Input className={styles.input} placeholder="Новая подзадача..." />
         </ul>
       )}
     </li>

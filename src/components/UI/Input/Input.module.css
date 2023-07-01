@@ -1,0 +1,28 @@
+.input {
+	display: block;
+
+	padding: 3px 10px;
+
+	line-height: 22px;
+
+	opacity: 0.4;
+	border: 1px solid black;
+	border-radius: 5px;
+	box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+}
+
+.input::placeholder {
+	color: black;
+	opacity: 0.5;
+}
+
+.input:focus,
+.input:hover {
+	color: black;
+	opacity: 1;
+	outline: 2px solid black;
+}
+
+.input:hover {
+	opacity: 0.8;
+}

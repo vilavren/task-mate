@@ -7,7 +7,7 @@ class Task {
     {
       id: '1',
       title: 'Первая',
-      completed: false,
+      completed: true,
     },
     {
       id: '2',

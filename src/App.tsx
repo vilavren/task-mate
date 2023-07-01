@@ -1,14 +1,12 @@
 import React from 'react'
 
 import './App.css'
-import TaskStore from './stores/TaskStore'
+import { Tasks } from './components/Tasks/Tasks'
 
 function App() {
   return (
     <div className="App">
-      {TaskStore.tasks.map((t) => (
-        <>{t.title}</>
-      ))}
+      <Tasks />
     </div>
   )
 }

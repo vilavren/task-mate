@@ -3,24 +3,36 @@ import type { CheckboxChangeEvent } from 'antd/es/checkbox'
 import cn from 'classnames'
 import React from 'react'
 
+import { Htag } from '../UI/Htag/Htag'
+
 import styles from './Task.module.css'
 import { TaskProps } from './Task.props'
 
-export const Task: React.FC<TaskProps> = ({ className, task, ...props }) => {
+export const Task: React.FC<TaskProps> = ({
+  className,
+  task,
+  htag,
+  subHtag,
+  ...props
+}) => {
   const onChange = (e: CheckboxChangeEvent) => {
     console.log(`checked = ${e.target.checked}`)
   }
 
   return (
-    <li className={cn(className, styles.input)} {...props}>
-      <Checkbox checked={task.completed} onChange={onChange}>
-        {task.title}
-      </Checkbox>
+    <li className={cn(className, styles.task)} {...props}>
+      <Checkbox
+        className={styles.checkbox}
+        checked={task.completed}
+        onChange={onChange}
+      />
+
+      <Htag tag={htag}>{task.title}</Htag>
 
       {task.subtasks && (
         <ul>
           {task.subtasks.map((st) => (
-            <Task key={st.id} task={st} />
+            <Task htag={subHtag} subHtag={subHtag} key={st.id} task={st} />
           ))}
         </ul>
       )}

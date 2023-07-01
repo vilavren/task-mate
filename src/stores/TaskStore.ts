@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 
-import { tasksData } from '../data/tasksData'
+import { tasksData } from '../assets/data/tasksData'
 import { ITask } from '../interfaces/task'
 
 class Task {

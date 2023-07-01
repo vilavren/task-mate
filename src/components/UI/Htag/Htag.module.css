@@ -1,0 +1,27 @@
+.h1 {
+	display: inline-block;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 130%;
+}
+
+.h2 {
+	display: inline-block;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 130%;
+}
+
+.h3 {
+	display: inline-block;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 120%;
+}
+
+.h4 {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 120%;
+}

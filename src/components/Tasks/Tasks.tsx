@@ -11,7 +11,7 @@ export const Tasks: React.FC<TasksProps> = ({ className, ...props }) => {
   return (
     <ul className={cn(className, styles.tasks)} {...props}>
       {TaskStore.tasks.map((t) => (
-        <Task key={t.id} task={t} />
+        <Task htag="h3" subHtag="h4" key={t.id} task={t} />
       ))}
     </ul>
   )

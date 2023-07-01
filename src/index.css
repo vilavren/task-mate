@@ -106,3 +106,7 @@ label {
 legend {
 	display: block;
 }
+
+body {
+	font-family: Rubik, Arial, sans-serif;
+}

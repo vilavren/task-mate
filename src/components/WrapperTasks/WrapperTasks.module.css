@@ -1,0 +1,23 @@
+.wrapperTasks {
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-content: center;
+	justify-content: center;
+
+	max-width: 1440px;
+	margin: 0 auto;
+
+	border-radius: 10px;
+
+}
+
+.tasks {
+	padding: 35px;
+	background-color: #eee;
+}
+
+.openTask {
+	padding: 35px 45px;
+	background-color: #dbdfe1;
+}

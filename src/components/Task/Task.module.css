@@ -1,7 +1,9 @@
 .task {
+	position: relative;
 	margin-bottom: 5px;
 	background-color: #F7FBFD;
 	border-radius: 5px;
+
 }
 
 .checkbox {

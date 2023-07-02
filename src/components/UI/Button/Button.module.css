@@ -1,0 +1,9 @@
+.button {
+	position: absolute;
+	right: 0;
+	opacity: 0.3;
+}
+
+.button:hover {
+	opacity: 1;
+}

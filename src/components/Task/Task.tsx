@@ -4,6 +4,7 @@ import type { CheckboxChangeEvent } from 'antd/es/checkbox'
 import cn from 'classnames'
 import React from 'react'
 
+import { Button } from '../UI/Button/Button'
 import { Htag } from '../UI/Htag/Htag'
 import { Input } from '../UI/Input/Input'
 
@@ -32,6 +33,7 @@ export const Task: React.FC<TaskProps> = ({
       />
 
       <Htag tag={htag}>{task.title}</Htag>
+      <Button />
 
       {task.subtasks && (
         <ul className={styles.subTasks}>

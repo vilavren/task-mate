@@ -16,7 +16,11 @@ export const Tasks: React.FC<TasksProps> = observer(
         {TaskStore.tasks.map((t) => (
           <Task htag="h3" subHtag="h4" key={t.id} task={t} />
         ))}
-        <Input className={styles.input} placeholder="Новая задача..." />
+        <Input
+          tasks={TaskStore.tasks}
+          className={styles.input}
+          placeholder="Новая задача..."
+        />
       </ul>
     )
   }

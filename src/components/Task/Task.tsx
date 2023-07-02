@@ -44,13 +44,17 @@ export const Task: React.FC<TaskProps> = observer(
             {task.subtasks.map((st) => (
               <Task
                 className={styles.subTask}
-                htag={subHtag}
-                subHtag={subHtag}
                 key={st.id}
                 task={st}
+                htag={subHtag}
+                subHtag={subHtag}
               />
             ))}
-            <Input className={styles.input} placeholder="Новая подзадача..." />
+            <Input
+              className={styles.input}
+              placeholder="Новая подзадача..."
+              tasks={task.subtasks}
+            />
           </ul>
         )}
       </li>

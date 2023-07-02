@@ -1,6 +1,5 @@
 import { RightOutlined } from '@ant-design/icons/lib/icons'
 import { Checkbox } from 'antd'
-import { CheckboxChangeEvent } from 'antd/es/checkbox'
 import cn from 'classnames'
 import { observer } from 'mobx-react-lite'
 import React from 'react'
@@ -15,8 +14,12 @@ import { TaskProps } from './Task.props'
 
 export const Task: React.FC<TaskProps> = observer(
   ({ className, task, htag, subHtag, ...props }) => {
-    const completedTask = (id: string) => {
+    const handleTaskToggle = (id: string) => {
       TaskStore.completedTask(id)
+    }
+
+    const handleTaskRemove = (id: string) => {
+      TaskStore.removeTask(id)
     }
 
     return (
@@ -26,11 +29,15 @@ export const Task: React.FC<TaskProps> = observer(
         <Checkbox
           className={styles.checkbox}
           checked={task.completed}
-          onChange={() => completedTask(task.id)}
+          onChange={() => handleTaskToggle(task.id)}
         />
 
         <Htag tag={htag}>{task.title}</Htag>
-        <Button />
+        <Button
+          onClick={() => {
+            handleTaskRemove(task.id)
+          }}
+        />
 
         {task.subtasks && (
           <ul className={styles.subTasks}>

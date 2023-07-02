@@ -3,6 +3,7 @@ import { makeAutoObservable } from 'mobx'
 import { tasksData } from '../assets/data/tasksData'
 import { ITask } from '../interfaces/task'
 import { findTaskById } from '../utils/findTaskById'
+import { removeTaskById } from '../utils/removeTaskById'
 
 class Task {
   tasks: ITask[] = tasksData
@@ -16,7 +17,7 @@ class Task {
   }
 
   removeTask(id: string) {
-    this.tasks = this.tasks.filter((t) => t.id !== id)
+    this.tasks = removeTaskById(this.tasks, id)
   }
 
   completedTask(id: string) {

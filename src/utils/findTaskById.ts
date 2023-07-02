@@ -5,6 +5,7 @@ export const findTaskById = (tasks: ITask[], id: string): ITask | undefined => {
     if (t.id === id) {
       return t
     }
+
     if (t.subtasks) {
       const nestedResult = findTaskById(t.subtasks, id)
       if (nestedResult) {
@@ -12,5 +13,4 @@ export const findTaskById = (tasks: ITask[], id: string): ITask | undefined => {
       }
     }
   }
-  return undefined
 }

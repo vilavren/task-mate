@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx'
 
 import { tasksData } from '../assets/data/tasksData'
 import { ITask } from '../interfaces/task'
+import { findTaskById } from '../utils/findTaskById'
 
 class Task {
   tasks: ITask[] = tasksData
@@ -19,9 +20,10 @@ class Task {
   }
 
   completedTask(id: string) {
-    this.tasks = this.tasks.map((t) =>
-      t.id === id ? { ...t, completed: !t.completed } : t
-    )
+    const task = findTaskById(this.tasks, id)
+    if (task) {
+      task.completed = !task.completed
+    }
   }
 }
 

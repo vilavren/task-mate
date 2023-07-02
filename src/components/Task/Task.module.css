@@ -3,7 +3,6 @@
 	margin-bottom: 5px;
 	background-color: #F7FBFD;
 	border-radius: 5px;
-
 }
 
 .checkbox {
@@ -24,8 +23,17 @@
 }
 
 .input {
+	margin-top: 2px;
 	margin-bottom: 10px;
 	margin-left: 56px;
 	font-size: 14px;
-	line-height: 120%;
+}
+
+.inputSubtask {
+	font-size: 14px;
+}
+
+.plusTask {
+	margin: 0 10px;
+	padding: 10px 0;
 }

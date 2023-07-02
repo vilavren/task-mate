@@ -4,6 +4,7 @@ export const tasksData = [
     title: 'Первая',
     text: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.',
     completed: true,
+    subtasks: [],
   },
   {
     id: '2',
@@ -14,6 +15,7 @@ export const tasksData = [
         id: '2.1',
         title: 'Вторая-один',
         completed: true,
+        subtasks: [],
       },
       {
         id: '2.2',
@@ -24,11 +26,13 @@ export const tasksData = [
             id: '2.2.1',
             title: 'Вторая-два-один',
             completed: true,
+            subtasks: [],
           },
           {
             id: '2.2.2',
             title: 'Вторая-два-два',
             completed: false,
+            subtasks: [],
           },
         ],
       },

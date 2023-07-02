@@ -1,8 +1,8 @@
-import { RightOutlined } from '@ant-design/icons/lib/icons'
+import { PlusOutlined, RightOutlined } from '@ant-design/icons/lib/icons'
 import { Checkbox } from 'antd'
 import cn from 'classnames'
 import { observer } from 'mobx-react-lite'
-import React from 'react'
+import React, { useState } from 'react'
 
 import TaskStore from '../../stores/TaskStore'
 import { Button } from '../UI/Button/Button'
@@ -14,6 +14,12 @@ import { TaskProps } from './Task.props'
 
 export const Task: React.FC<TaskProps> = observer(
   ({ className, task, htag, subHtag, ...props }) => {
+    const [openSubtask, setOpenSubtask] = useState(false)
+
+    const handleOpenSubtask = () => {
+      setOpenSubtask(!openSubtask)
+    }
+
     const handleTaskToggle = (id: string) => {
       TaskStore.completedTask(id)
     }
@@ -24,7 +30,11 @@ export const Task: React.FC<TaskProps> = observer(
 
     return (
       <li className={cn(className, styles.task)} {...props}>
-        <RightOutlined className={styles.caret} />
+        <RightOutlined
+          rotate={openSubtask ? 90 : 0}
+          className={styles.caret}
+          onClick={handleOpenSubtask}
+        />
 
         <Checkbox
           className={styles.checkbox}
@@ -33,13 +43,22 @@ export const Task: React.FC<TaskProps> = observer(
         />
 
         <Htag tag={htag}>{task.title}</Htag>
+
+        <PlusOutlined className={styles.plusTask} />
+        <Input
+          className={styles.inputSubtask}
+          placeholder="Новая подзадача..."
+          tasks={task.subtasks}
+          setOpenSubtask={setOpenSubtask}
+        />
+
         <Button
           onClick={() => {
             handleTaskRemove(task.id)
           }}
         />
 
-        {task.subtasks && (
+        {openSubtask && task.subtasks && (
           <ul className={styles.subTasks}>
             {task.subtasks.map((st) => (
               <Task
@@ -50,11 +69,14 @@ export const Task: React.FC<TaskProps> = observer(
                 subHtag={subHtag}
               />
             ))}
-            <Input
-              className={styles.input}
-              placeholder="Новая подзадача..."
-              tasks={task.subtasks}
-            />
+            {task.subtasks.length > 0 && (
+              <Input
+                className={styles.input}
+                placeholder="Новая подзадача..."
+                tasks={task.subtasks}
+                setOpenSubtask={setOpenSubtask}
+              />
+            )}
           </ul>
         )}
       </li>

@@ -1,16 +1,18 @@
-.input {
-	display: block;
+.form {
+	display: inline-block;
+}
 
-	margin-top: 2px;
+.input {
+	display: inline-block;
+
 	padding: 3px 10px;
 
-	line-height: 22px;
+	line-height: 130%;
 
 	opacity: 0.4;
 	border: 1px solid black;
 	border-radius: 5px;
 	box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
-
 }
 
 .input::placeholder {

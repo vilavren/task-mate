@@ -7,7 +7,13 @@ import TaskStore from '../../../stores/TaskStore'
 import styles from './Input.module.css'
 import { InputProps } from './Input.props'
 
-export const Input: React.FC<InputProps> = ({ className, tasks, ...props }) => {
+export const Input: React.FC<InputProps> = ({
+  className,
+  children,
+  tasks,
+  setOpenSubtask,
+  ...props
+}) => {
   const [newTaskText, setNewTaskText] = useState('')
 
   const handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -20,17 +26,23 @@ export const Input: React.FC<InputProps> = ({ className, tasks, ...props }) => {
     if (tasks && e.key === 'Enter') {
       TaskStore.addTask(newTaskText, tasks)
       setNewTaskText('')
+      {
+        setOpenSubtask && setOpenSubtask(true)
+      }
     }
   }
 
   return (
-    <input
-      value={newTaskText}
-      onChange={handleInputOnChange}
-      onKeyDown={(e) => handleTaskAdd(e, tasks)}
-      type="text"
-      className={cn(className, styles.input)}
-      {...props}
-    />
+    <div className={styles.form}>
+      {children}
+      <input
+        value={newTaskText}
+        onChange={handleInputOnChange}
+        onKeyDown={(e) => handleTaskAdd(e, tasks)}
+        type="text"
+        className={cn(className, styles.input)}
+        {...props}
+      />
+    </div>
   )
 }

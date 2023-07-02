@@ -8,7 +8,7 @@ import { ButtonProps } from './Button.props'
 export const Button: React.FC<ButtonProps> = ({ className, ...props }) => {
   return (
     <button className={cn(className, styles.button)} {...props}>
-      <DeleteOutlined />
+      <DeleteOutlined className={styles.icon} />
     </button>
   )
 }

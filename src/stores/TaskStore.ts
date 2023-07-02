@@ -20,7 +20,7 @@ class Task {
       title,
       text: '',
       completed: false,
-      subtask: [],
+      subtasks: [],
     }
     tasks.push(newTask)
     console.log('tasks:', this.tasks)

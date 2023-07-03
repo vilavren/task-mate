@@ -1,15 +1,19 @@
 import { makeAutoObservable } from 'mobx'
 import { v4 as uuidv4 } from 'uuid'
 
-import { tasksData } from '../assets/data/tasksData'
 import { ITask } from '../interfaces/task'
 import { completedSubtask } from '../utils/completedSubtask'
 import { findTaskById } from '../utils/findTaskById'
 import { removeTaskById } from '../utils/removeTaskById'
 
 class Task {
-  tasks: ITask[] = tasksData
-  openTask: ITask = this.tasks[0]
+  tasks: ITask[] = []
+  openTask: ITask = {
+    id: '',
+    title: 'Task Mate',
+    text: 'Чтобы создать новую задачу, нажмите кнопку "+"',
+    completed: true,
+  }
 
   constructor() {
     makeAutoObservable(this)

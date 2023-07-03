@@ -33,16 +33,16 @@ export const Input: React.FC<InputProps> = ({
   }
 
   return (
-    <div className={styles.form}>
-      {children}
+    <div className={cn(className, styles.form)}>
       <input
         value={newTaskText}
         onChange={handleInputOnChange}
         onKeyDown={(e) => handleTaskAdd(e, tasks)}
         type="text"
-        className={cn(className, styles.input)}
+        className={styles.input}
         {...props}
       />
+      {children}
     </div>
   )
 }

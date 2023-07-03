@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { tasksData } from '../assets/data/tasksData'
 import { ITask } from '../interfaces/task'
+import { completedSubtask } from '../utils/completedSubtask'
 import { findTaskById } from '../utils/findTaskById'
 import { removeTaskById } from '../utils/removeTaskById'
 
@@ -33,14 +34,6 @@ class Task {
 
   completedTask(id: string) {
     const task = findTaskById(this.tasks, id)
-    const completedSubtask = (task: ITask | undefined, completed: boolean) => {
-      if (task?.subtasks) {
-        task.subtasks.forEach((t) => {
-          t.completed = completed
-          completedSubtask(t, completed)
-        })
-      }
-    }
 
     if (task) {
       task.completed = !task.completed

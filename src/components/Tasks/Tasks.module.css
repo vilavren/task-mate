@@ -17,7 +17,7 @@
 }
 
 .inputSearch {
-	width: 50vw;
+	width: 45vw;
 	margin-bottom: 15px;
 	padding: 5px;
 
@@ -28,4 +28,20 @@
 
 .inputSearch:hover {
 	box-shadow: 0 3px 10px rgb(0 0 0 / 60%);
+}
+
+.removeButton {
+	cursor: pointer;
+
+	position: absolute;
+	top: 10px;
+	right: 5px;
+
+	font-size: 20px;
+
+	opacity: 0.3;
+}
+
+.removeButton:hover {
+	opacity: 1;
 }

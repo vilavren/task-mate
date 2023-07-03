@@ -1,15 +1,19 @@
 .form {
+	position: relative;
 	display: inline-block;
 }
 
 .input {
 	display: inline-block;
+
+	width: 100%;
+	padding: 5px 0;
+
 	opacity: 0.4;
 	border: none;
-	box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
 }
 
-.input::placeholder {
+.form::placeholder {
 	color: black;
 	opacity: 0.5;
 }
@@ -20,6 +24,6 @@
 	opacity: 1;
 }
 
-.input:hover {
+.form:hover {
 	opacity: 0.8;
 }

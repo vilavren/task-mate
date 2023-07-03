@@ -4,6 +4,7 @@ import cn from 'classnames'
 import { observer } from 'mobx-react-lite'
 import React, { useState } from 'react'
 
+import { ITask } from '../../interfaces/task'
 import TaskStore from '../../stores/TaskStore'
 import { Button } from '../UI/Button/Button'
 import { Htag } from '../UI/Htag/Htag'
@@ -15,9 +16,17 @@ import { TaskProps } from './Task.props'
 export const Task: React.FC<TaskProps> = observer(
   ({ className, task, htag, subHtag, ...props }) => {
     const [openSubtask, setOpenSubtask] = useState(false)
+    const [openInput, setOpenInput] = useState(false)
 
     const handleOpenSubtask = () => {
       setOpenSubtask(!openSubtask)
+    }
+    const handleOpenInput = () => {
+      setOpenInput(!openInput)
+    }
+
+    const handleOpenTask = (task: ITask) => {
+      TaskStore.setOpenTask(task)
     }
 
     const handleTaskToggle = (id: string) => {
@@ -42,15 +51,23 @@ export const Task: React.FC<TaskProps> = observer(
           onChange={() => handleTaskToggle(task.id)}
         />
 
-        <Htag tag={htag}>{task.title}</Htag>
+        <Htag
+          className={styles.title}
+          tag={htag}
+          onClick={() => handleOpenTask(task)}
+        >
+          {task.title}
+        </Htag>
 
-        <PlusOutlined className={styles.plusTask} />
-        <Input
-          className={styles.inputSubtask}
-          placeholder="Новая подзадача..."
-          tasks={task.subtasks}
-          setOpenSubtask={setOpenSubtask}
-        />
+        <PlusOutlined className={styles.plusTask} onClick={handleOpenInput} />
+        {openInput && (
+          <Input
+            className={styles.inputSubtask}
+            placeholder="Новая подзадача..."
+            tasks={task.subtasks}
+            setOpenSubtask={setOpenSubtask}
+          />
+        )}
 
         <Button
           onClick={() => {

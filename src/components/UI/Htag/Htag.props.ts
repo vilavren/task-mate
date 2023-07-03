@@ -1,7 +1,8 @@
 import { ReactNode } from 'react'
 
-export interface HtagProps {
+export interface HtagProps extends React.HTMLAttributes<HTMLHeadingElement> {
   tag: IHtag
+  onClick?: React.MouseEventHandler<HTMLHeadingElement> | undefined
   children: ReactNode
 }
 

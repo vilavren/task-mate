@@ -10,10 +10,21 @@ import { OpenTaskProps } from './OpenTask.props'
 
 export const OpenTask: React.FC<OpenTaskProps> = observer(
   ({ className, ...props }) => {
+    const handleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      TaskStore.openTask.text = e.target.value
+      e.target.value = ''
+      console.log('TaskStore.openTask.text:', TaskStore.openTask.text)
+    }
+
     return (
       <div className={cn(className, styles.openTasks)} {...props}>
         <Htag tag="h2">{TaskStore.openTask.title}</Htag>
-        <p className={styles.text}>{TaskStore.openTask.text}</p>
+        <textarea
+          placeholder="Текст..."
+          className={styles.text}
+          value={TaskStore.openTask.text}
+          onChange={handleChangeText}
+        />
       </div>
     )
   }

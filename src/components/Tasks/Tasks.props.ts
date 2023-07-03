@@ -1,1 +1,1 @@
-export type TasksProps = React.HTMLAttributes<HTMLUListElement>
+export type TasksProps = React.HTMLAttributes<HTMLDivElement>

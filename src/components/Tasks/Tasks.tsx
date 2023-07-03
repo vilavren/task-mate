@@ -1,3 +1,4 @@
+import { PlusOutlined } from '@ant-design/icons/lib/icons'
 import cn from 'classnames'
 import { observer } from 'mobx-react-lite'
 import React from 'react'
@@ -12,16 +13,22 @@ import { TasksProps } from './Tasks.props'
 export const Tasks: React.FC<TasksProps> = observer(
   ({ className, ...props }) => {
     return (
-      <ul className={cn(className, styles.tasks)} {...props}>
-        {TaskStore.tasks.map((t) => (
-          <Task htag="h3" subHtag="h4" key={t.id} task={t} />
-        ))}
-        <Input
-          tasks={TaskStore.tasks}
-          className={styles.input}
-          placeholder="Новая задача..."
-        />
-      </ul>
+      <div className={cn(className, styles.tasks)} {...props}>
+        <Input className={styles.inputSearch} placeholder="Поиск по задачам" />
+        <ul>
+          {TaskStore.tasks.map((t) => (
+            <Task htag="h3" subHtag="h4" key={t.id} task={t} />
+          ))}
+          <div className={styles.wrapperAddTask}>
+            <PlusOutlined className={styles.plusAddTask} />
+            <Input
+              tasks={TaskStore.tasks}
+              className={styles.input}
+              placeholder="Новая задача..."
+            />
+          </div>
+        </ul>
+      </div>
     )
   }
 )

@@ -8,13 +8,7 @@ import { removeTaskById } from '../utils/removeTaskById'
 
 class Task {
   tasks: ITask[] = tasksData
-  openTask: ITask = {
-    id: '1',
-    title: 'Первая',
-    text: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.',
-    completed: true,
-    subtasks: [],
-  }
+  openTask: ITask = this.tasks[0]
 
   constructor() {
     makeAutoObservable(this)
@@ -39,8 +33,20 @@ class Task {
 
   completedTask(id: string) {
     const task = findTaskById(this.tasks, id)
+    const completedSubtask = (task: ITask | undefined, completed: boolean) => {
+      if (task?.subtasks) {
+        task.subtasks.forEach((t) => {
+          t.completed = completed
+          completedSubtask(t, completed)
+        })
+      }
+    }
+
     if (task) {
       task.completed = !task.completed
+      task.completed === true
+        ? completedSubtask(task, true)
+        : completedSubtask(task, false)
     }
   }
 

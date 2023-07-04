@@ -1,7 +1,7 @@
 import { CloseCircleOutlined, PlusOutlined } from '@ant-design/icons/lib/icons'
 import cn from 'classnames'
 import { observer } from 'mobx-react-lite'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import TaskStore from '../../stores/TaskStore'
 import { findTaskByTitle } from '../../utils/findTaskByTitle'
@@ -14,6 +14,12 @@ import { TasksProps } from './Tasks.props'
 export const Tasks: React.FC<TasksProps> = observer(
   ({ className, ...props }) => {
     const [searchValue, setSearchValue] = useState('')
+
+    useEffect(() => {
+      const json = JSON.stringify(TaskStore.tasks)
+      localStorage.setItem('tasks', json)
+      console.log('тут')
+    }, [TaskStore.tasks])
 
     const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchValue(e.target.value)

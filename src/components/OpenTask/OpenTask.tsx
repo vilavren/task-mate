@@ -13,7 +13,6 @@ export const OpenTask: React.FC<OpenTaskProps> = observer(
     const handleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       TaskStore.openTask.text = e.target.value
       e.target.value = ''
-      console.log('TaskStore.openTask.text:', TaskStore.openTask.text)
     }
 
     return (

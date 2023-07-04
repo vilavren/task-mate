@@ -1,7 +1,8 @@
 export interface ITask {
   id: string
   title: string
-  text?: string
+  text: string
   completed: boolean
-  subtasks?: ITask[]
+  subtasks: ITask[]
+  openSubtask: boolean
 }

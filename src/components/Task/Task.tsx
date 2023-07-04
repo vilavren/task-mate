@@ -2,6 +2,7 @@ import {
   DeleteOutlined,
   PlusOutlined,
   RightOutlined,
+  StopOutlined,
 } from '@ant-design/icons/lib/icons'
 import { Checkbox } from 'antd'
 import cn from 'classnames'
@@ -10,6 +11,7 @@ import React, { useState } from 'react'
 
 import { ITask } from '../../interfaces/task'
 import TaskStore from '../../stores/TaskStore'
+import { setTaskFromLS } from '../../utils/setTaskFromLS'
 import { Htag } from '../UI/Htag/Htag'
 import { Input } from '../UI/Input/Input'
 
@@ -18,11 +20,11 @@ import { TaskProps } from './Task.props'
 
 export const Task: React.FC<TaskProps> = observer(
   ({ className, task, htag, subHtag, ...props }) => {
-    const [openSubtask, setOpenSubtask] = useState(false)
     const [openInput, setOpenInput] = useState(false)
 
     const handleOpenSubtask = () => {
-      setOpenSubtask(!openSubtask)
+      task.openSubtask = !task.openSubtask
+      setTaskFromLS()
     }
     const handleOpenInput = () => {
       setOpenInput(!openInput)
@@ -42,51 +44,60 @@ export const Task: React.FC<TaskProps> = observer(
 
     return (
       <li className={cn(className, styles.task)} {...props}>
-        <RightOutlined
-          rotate={openSubtask ? 90 : 0}
-          className={styles.caret}
-          onClick={handleOpenSubtask}
-        />
-
-        <Checkbox
-          className={styles.checkbox}
-          checked={task.completed}
-          onChange={() => handleTaskToggle(task.id)}
-        />
-
-        <Htag
-          className={styles.title}
-          tag={htag}
+        <div
           onClick={() => handleOpenTask(task)}
+          className={styles.titleWrapper}
         >
-          {task.title}
-        </Htag>
+          {task.subtasks?.length > 0 ? (
+            <RightOutlined
+              rotate={task.openSubtask ? 90 : 0}
+              className={styles.caret}
+              onClick={handleOpenSubtask}
+            />
+          ) : (
+            <StopOutlined className={styles.stop} />
+          )}
 
-        <PlusOutlined
-          className={styles.plusAddTask}
-          onClick={handleOpenInput}
-        />
-        {openInput && (
-          <Input
-            className={styles.input}
-            placeholder="Новая подзадача..."
-            tasks={task.subtasks}
-            setOpenSubtask={setOpenSubtask}
+          <Checkbox
+            className={styles.checkbox}
+            checked={task.completed}
+            onChange={() => handleTaskToggle(task.id)}
           />
-        )}
 
-        <DeleteOutlined
-          className={styles.removeButton}
-          onClick={() => {
-            handleTaskRemove(task.id)
-          }}
-        />
+          <Htag className={styles.title} tag={htag}>
+            {task.title}
+          </Htag>
 
-        {openSubtask && task.subtasks && (
-          <ul>
+          {task.subtasks?.length === 0 && (
+            <>
+              <PlusOutlined
+                className={styles.plusAddTask}
+                onClick={handleOpenInput}
+              />
+              {openInput && (
+                <Input
+                  className={styles.input}
+                  placeholder="Новая подзадача..."
+                  tasks={task.subtasks}
+                  task={task}
+                />
+              )}
+            </>
+          )}
+
+          <DeleteOutlined
+            className={styles.removeButton}
+            onClick={() => {
+              handleTaskRemove(task.id)
+            }}
+          />
+        </div>
+
+        {task.openSubtask && task.subtasks && (
+          <ul className={styles.WrapperSubtask}>
             {task.subtasks.map((st) => (
               <Task
-                className={styles.subTask}
+                className={styles.subtask}
                 key={st.id}
                 task={st}
                 htag={subHtag}
@@ -100,7 +111,6 @@ export const Task: React.FC<TaskProps> = observer(
                   className={styles.inputSubtask}
                   placeholder="Новая подзадача..."
                   tasks={task.subtasks}
-                  setOpenSubtask={setOpenSubtask}
                 />
               </>
             )}

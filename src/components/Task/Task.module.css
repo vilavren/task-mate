@@ -1,12 +1,53 @@
 .task {
+	cursor: pointer;
+
 	position: relative;
 
 	margin-bottom: 5px;
 	padding: 5px 0;
+
+	background-color: white;
+	border-radius: 5px;
+}
+
+.titleWrapper {
+	width: 90%;
+	margin-right: 5px;
+	padding: 3px;
+	padding-right: 15px;
 	padding-left: 5px;
 
 	background-color: white;
 	border-radius: 5px;
+}
+
+.subtask {
+	margin-bottom: 2px;
+	padding-left: 26px;
+}
+
+.task:hover {
+	background-color: #ccc;
+}
+
+.task:hover .titleWrapper {
+	background-color: #ccc;
+}
+
+.task:hover .subtask {
+	background-color: #ccc;
+}
+
+.task:hover .subtask:hover {
+	background-color: white;
+}
+
+.subtask:hover .titleWrapper {
+	background-color: #ccc;
+}
+
+.subtask:hover>.titleWrapper {
+	background-color: white;
 }
 
 .title {
@@ -19,17 +60,19 @@
 }
 
 .caret {
+	cursor: default;
 	margin-right: 10px;
 }
 
-.subTask {
-	margin-bottom: 0;
-	padding-left: 26px;
+.stop {
+	cursor: default;
+	margin-right: 10px;
 }
+
 
 .plusAddSubtask {
 	margin-right: 10px;
-	padding-left: 27px;
+	padding-left: 30px;
 }
 
 .input {
@@ -38,6 +81,7 @@
 }
 
 .inputSubtask {
+	padding: 5px 0;
 	font-size: 14px;
 }
 
@@ -51,7 +95,7 @@
 
 .removeButton {
 	position: absolute;
-	top: 6px;
+	top: 8px;
 	right: 5px;
 
 	font-size: 20px;

@@ -4,15 +4,19 @@ import { v4 as uuidv4 } from 'uuid'
 import { ITask } from '../interfaces/task'
 import { completedSubtask } from '../utils/completedSubtask'
 import { findTaskById } from '../utils/findTaskById'
+import { getTaskFromLS } from '../utils/getTaskFromLS'
 import { removeTaskById } from '../utils/removeTaskById'
+import { setTaskFromLS } from '../utils/setTaskFromLS'
 
 class Task {
-  tasks: ITask[] = []
+  tasks: ITask[] = getTaskFromLS()
   openTask: ITask = {
     id: '',
     title: 'Task Mate',
-    text: 'Чтобы создать новую задачу, нажмите кнопку "+"',
+    text: ' ',
     completed: true,
+    subtasks: [],
+    openSubtask: false,
   }
 
   constructor() {
@@ -27,9 +31,10 @@ class Task {
       text: '',
       completed: false,
       subtasks: [],
+      openSubtask: false,
     }
     tasks.push(newTask)
-    console.log('tasks:', this.tasks)
+    setTaskFromLS()
   }
 
   removeTask(id: string) {
@@ -45,6 +50,7 @@ class Task {
         ? completedSubtask(task, true)
         : completedSubtask(task, false)
     }
+    setTaskFromLS()
   }
 
   setOpenTask(task: ITask) {

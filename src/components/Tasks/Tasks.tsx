@@ -18,7 +18,6 @@ export const Tasks: React.FC<TasksProps> = observer(
     useEffect(() => {
       const json = JSON.stringify(TaskStore.tasks)
       localStorage.setItem('tasks', json)
-      console.log('тут')
     }, [TaskStore.tasks])
 
     const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {

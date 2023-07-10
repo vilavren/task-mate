@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import { action } from 'mobx'
 import { observer } from 'mobx-react-lite'
 import React, { useState } from 'react'
 
@@ -15,13 +16,17 @@ export const Input: React.FC<InputProps> = observer(
     const handleInputOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
       setNewTaskText(e.target.value)
 
+    const openSubtaskAction = action((task: ITask) => {
+      task.openSubtask = true
+    })
+
     const handleTaskAdd = (
       e: React.KeyboardEvent<HTMLInputElement>,
       tasks?: ITask[],
       task?: ITask
     ) => {
       if (task) {
-        task.openSubtask = true
+        openSubtaskAction(task)
       }
       if (tasks && e.key === 'Enter') {
         TaskStore.addTask(newTaskText, tasks)
